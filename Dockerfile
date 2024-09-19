@@ -4,8 +4,6 @@ FROM alpine:3.17
 # install dependency tools
 RUN apk add --no-cache net-tools iptables iproute2 wget
 
-COPY transfer_params_prod.bin ./params/transfer_params_prod.bin
-
 # working directory
 WORKDIR /app
 
@@ -25,10 +23,6 @@ RUN chmod +x keygen
 RUN wget -O attestation-server http://public.artifacts.marlin.pro/projects/enclaves/attestation-server_v2.0.0_linux_amd64
 RUN chmod +x attestation-server
 
-#attestation utility
-RUN wget -O oyster-attestation-server-secp256k1 http://public.artifacts.marlin.pro/projects/enclaves/attestation-server-secp256k1_v1.0.0_linux_amd64
-RUN chmod +x oyster-attestation-server-secp256k1
-
 # proxy to expose attestation server outside the enclave
 RUN wget -O vsock-to-ip http://public.artifacts.marlin.pro/projects/enclaves/vsock-to-ip_v1.0.0_linux_amd64
 RUN chmod +x vsock-to-ip
@@ -47,7 +41,6 @@ COPY supervisord.conf /etc/supervisord.conf
 COPY setup.sh ./
 RUN chmod +x setup.sh
 
-# generator-client api server
 ## used for generating/updating the config files and managing(start/stop/restart) the zk-proof generator
 COPY generator-client ./
 RUN chmod +x generator-client

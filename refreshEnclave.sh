@@ -12,9 +12,9 @@ nitro-cli terminate-enclave --all
 
 # Conditionally run the enclave in debug mode if --debug was provided
 if [ "$DEBUG_MODE" = true ]; then
-    nitro-cli run-enclave --cpu-count 6 --memory 12000 --eif-path nitro-enclave.eif --enclave-cid 88 --debug-mode
+    nitro-cli run-enclave --cpu-count 4 --memory 8000 --eif-path nitro-enclave.eif --enclave-cid 88 --debug-mode
 else
-    nitro-cli run-enclave --cpu-count 6 --memory 12000 --eif-path nitro-enclave.eif --enclave-cid 88
+    nitro-cli run-enclave --cpu-count 4 --memory 8000 --eif-path nitro-enclave.eif --enclave-cid 88
 fi
 
 # Connect to the console of the first enclave
