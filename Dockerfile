@@ -42,18 +42,18 @@ COPY setup.sh ./
 RUN chmod +x setup.sh
 
 ## used for generating/updating the config files and managing(start/stop/restart) the zk-proof generator
-COPY generator-client ./
-RUN chmod +x generator-client
+COPY generator_client ./
+RUN chmod +x generator_client
 
 COPY test_inputs.json ./
 
-COPY id.sec ./
-
 COPY id.pub ./
 
-COPY secp.pub ./
+COPY id.sec ./
 
 COPY secp.sec ./
+
+COPY secp.pub ./
 
 COPY zkbob_generator ./
 RUN chmod +x zkbob_generator
